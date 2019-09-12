@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BitcoinPrices</string>
+
+    <string name="item_name">Item Name</string>
+    <string name="item_price">Item Price</string>
+    <string name="search_currency">Search Currency</string>
+    <string name="exchange_rates">Kurs</string>
+</resources>

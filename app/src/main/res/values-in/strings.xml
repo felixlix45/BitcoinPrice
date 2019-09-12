@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BitcoinPrices</string>
+
+    <string name="item_name">Nama Item</string>
+    <string name="item_price">Harga Item</string>
+    <string name="search_currency">Cari Mata Uang</string>
+    <string name="exchange_rates">Kurs</string>
+</resources>
