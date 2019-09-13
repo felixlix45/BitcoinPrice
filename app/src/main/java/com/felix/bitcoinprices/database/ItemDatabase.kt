@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.felix.bitcoinprices.dao.ItemsDao
 import com.felix.bitcoinprices.model.DBItems
 
-@Database(entities = [DBItems::class], version = 1, exportSchema = false)
+@Database(entities = [DBItems::class], version = 2, exportSchema = false)
 abstract class ItemDatabase : RoomDatabase() {
 
     abstract fun itemsDao(): ItemsDao
@@ -19,6 +19,7 @@ abstract class ItemDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(context.applicationContext, ItemDatabase::class.java, "item_database")
                     .fallbackToDestructiveMigration()
+
                     .build()
             }
             return INSTANCE
