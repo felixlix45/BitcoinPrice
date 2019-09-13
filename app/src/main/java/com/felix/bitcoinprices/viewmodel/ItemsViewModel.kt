@@ -27,34 +27,38 @@ class ItemsViewModel : ViewModel() {
                         if(response!= null){
                             val dec = DecimalFormat("#,###.00")
                             val ratesObj = response.getJSONObject("data").getJSONObject("rates")
-                            if(ratesObj!=null){
-                                val keys: Iterator<String> = ratesObj.keys()
-                                while (keys.hasNext()){
-                                    val items = Items()
-                                    val keyValue = keys.next()
-                                    items.name = keyValue
-                                    items.price = dec.format(ratesObj.getString(keyValue).toDouble())
-                                    tempList.add(items)
-                                }
+                            
+                            val keys: Iterator<String> = ratesObj.keys()
+                            while (keys.hasNext()){
+                                val items = Items()
+                                val keyValue = keys.next()
+                                items.name = keyValue
+                                items.price = dec.format(ratesObj.getString(keyValue).toDouble())
 
-                                listItems.postValue(tempList)
-                            }else{
-                                Log.i("ViewModel", "Response is Null")
+                                tempList.add(items)
                             }
-
+                            Log.i("ViewModel", tempList[0].price.toString())
+                            listItems.postValue(tempList)
                         }else{
-                            listItems.postValue(null)
+                            listItems.postValue(tempList)
                         }
                     }
 
-                    override fun onError(anError: ANError?) {
-
+                    override fun onError(error: ANError) {
+                        Log.i("ERROR", error.errorDetail)
+                        val items = Items()
+                        items.name = error.errorDetail
+                        items.price = error.errorBody
+                        tempList.add(items)
+                        listItems.postValue(tempList)
                     }
                 })
         }catch (e: Exception){
             Log.e(TAG, e.toString())
         }
     }
+
+
 
     fun getItems() : LiveData<ArrayList<Items>>{
         return listItems

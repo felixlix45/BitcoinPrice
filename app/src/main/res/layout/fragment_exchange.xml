@@ -17,6 +17,47 @@
         android:background="@color/colorWhite"
         android:elevation="4dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/_1_btc_equals"
+        android:textSize="25sp"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"/>
+
+    <ProgressBar
+        android:id="@+id/pBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:shimmer_duration="1000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_items"/>
+            <include layout="@layout/shimmer_items"/>
+            <include layout="@layout/shimmer_items"/>
+            <include layout="@layout/shimmer_items"/>
+            <include layout="@layout/shimmer_items"/>
+            <include layout="@layout/shimmer_items"/>
+            <include layout="@layout/shimmer_items"/>
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExchangeItem"
         android:layout_width="match_parent"

@@ -4,5 +4,9 @@
     <string name="item_name">Item Name</string>
     <string name="item_price">Item Price</string>
     <string name="search_currency">Search Currency</string>
-    <string name="exchange_rates">Kurs</string>
+    <string name="exchange_rates">Exchange Rates</string>
+    <string name="retryConnection">Retry</string>
+    <string name="exchange">Exchange</string>
+    <string name="_1_btc_equals">1 BTC =</string>
+
 </resources>

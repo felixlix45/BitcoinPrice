@@ -8,7 +8,7 @@
         />
 
     <item
-        android:id="@+id/menu_test"
+        android:id="@+id/menu_calculator"
         android:icon="@drawable/money_black_24dp"
         android:title="None"
         />

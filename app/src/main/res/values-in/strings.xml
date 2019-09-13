@@ -6,4 +6,7 @@
     <string name="item_price">Harga Item</string>
     <string name="search_currency">Cari Mata Uang</string>
     <string name="exchange_rates">Kurs</string>
+    <string name="retryConnection">Coba Lagi</string>
+    <string name="exchange">Kurs</string>
+    <string name="_1_btc_equals">1 BTC =</string>
 </resources>
