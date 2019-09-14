@@ -2,15 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menu_realtime"
+        android:icon="@drawable/realtime_black_24dp"
+        android:title="@string/realtime_price"/>
+
+    <item
         android:id="@+id/menu_exchange"
         android:icon="@drawable/exchange_black_24dp"
         android:title="@string/exchange_rates"
-        />
-
-    <item
-        android:id="@+id/menu_calculator"
-        android:icon="@drawable/money_black_24dp"
-        android:title="None"
         />
 
 </menu>

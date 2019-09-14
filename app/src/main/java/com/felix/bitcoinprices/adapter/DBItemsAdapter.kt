@@ -1,6 +1,7 @@
 package com.felix.bitcoinprices.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,45 +14,46 @@ import com.felix.bitcoinprices.model.DBItems
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DBItemsAdapter(private val context: Context) : RecyclerView.Adapter<DBItemsAdapter.ViewHolder>(), Filterable {
+class DBItemsAdapter(private val context: Context) :
+    RecyclerView.Adapter<DBItemsAdapter.ViewHolder>(), Filterable {
 
-    private var listItems :List<DBItems> = ArrayList()
-    private var copyList :List<DBItems> = ArrayList()
+    private var listItems: List<DBItems> = ArrayList()
+    private var copyList: List<DBItems> = ArrayList()
 
-    init {
-        this.copyList = listItems
-    }
 
-    fun setData(items: List<DBItems>){
-        this.listItems = items
+    fun setData(items: List<DBItems>) {
+        this.listItems = items.toList()
+        this.copyList = listItems.toList()
         notifyDataSetChanged()
     }
 
     override fun getFilter(): Filter {
-        return object: Filter(){
+        return object : Filter() {
             override fun performFiltering(p0: CharSequence?): FilterResults {
-                if(p0 == null || p0.isEmpty()){
-                    listItems = copyList
-                }else{
+                Log.i("Adapter", copyList.size.toString())
+                Log.i("Adapter", listItems.size.toString())
+                listItems = if (p0 == null || p0.isEmpty()) {
+                    copyList
+                } else {
                     val filteredList: MutableList<DBItems> = mutableListOf()
-                    val filterPattern: String =p0.toString().toLowerCase(Locale.ROOT).trim()
-                    for(item:DBItems in copyList){
-                        if(item.name!!.toLowerCase(Locale.ROOT).contains(filterPattern)){
+                    val filterPattern: String = p0.toString().toLowerCase(Locale.ROOT).trim()
+                    for (item: DBItems in copyList) {
+                        if (item.name!!.toLowerCase(Locale.ROOT).contains(filterPattern)) {
                             filteredList.add(item)
                         }
                     }
-                    listItems = filteredList
+                    filteredList
 
                 }
-                val results =FilterResults()
+                val results = FilterResults()
                 results.values = listItems
                 return results
 
             }
 
             override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                if(p1!= null){
-                    listItems  = p1.values as  List<DBItems>
+                if (p1 != null) {
+                    listItems = p1.values as List<DBItems>
                     notifyDataSetChanged()
                 }
             }
@@ -71,12 +73,12 @@ class DBItemsAdapter(private val context: Context) : RecyclerView.Adapter<DBItem
         return listItems.size
     }
 
-    inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val txtName: TextView = itemView.findViewById(R.id.tvName)
         private val txtPrice: TextView = itemView.findViewById(R.id.tvPrice)
 
-        fun bind(items: DBItems){
+        fun bind(items: DBItems) {
             txtName.text = items.name
             txtPrice.text = items.price
         }

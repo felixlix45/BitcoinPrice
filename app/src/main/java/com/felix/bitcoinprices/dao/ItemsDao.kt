@@ -16,8 +16,7 @@ interface ItemsDao {
     fun deleteAll()
 
     @Query("SELECT * FROM ITEMS_TABLE")
-    fun getAll() : LiveData<List<DBItems>>
-
+    fun getAll(): LiveData<List<DBItems>>
 
 
 }

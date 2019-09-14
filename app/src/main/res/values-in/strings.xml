@@ -6,7 +6,11 @@
     <string name="item_price">Harga Item</string>
     <string name="search_currency">Cari Mata Uang</string>
     <string name="exchange_rates">Kurs</string>
-    <string name="retryConnection">Coba Lagi</string>
     <string name="exchange">Kurs</string>
-    <string name="_1_btc_equals">1 BTC =</string>
+    <string name="_1_btc_equals">1 BTC = $ %1$s</string>
+    <string name="title_1_btc">1 BTC = </string>
+    <string name="realtime_price">Harga Teraktual</string>
+    <string name="no_data_available">Data Tidak Tersedia</string>
+    <string name="input_value_in_USD">$</string>
+    <string name="usd_to_btc">USD = %1$s BTC</string>
 </resources>

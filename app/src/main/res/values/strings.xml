@@ -5,8 +5,12 @@
     <string name="item_price">Item Price</string>
     <string name="search_currency">Search Currency</string>
     <string name="exchange_rates">Exchange Rates</string>
-    <string name="retryConnection">Retry</string>
     <string name="exchange">Exchange</string>
-    <string name="_1_btc_equals">1 BTC =</string>
+    <string name="_1_btc_equals">1 BTC = $ %1$s</string>
+    <string name="title_1_btc">1 BTC = </string>
+    <string name="realtime_price">Realtime Price</string>
+    <string name="no_data_available">No Data Available</string>
+    <string name="input_value_in_USD">$</string>
+    <string name="usd_to_btc">USD = %1$s BTC</string>
 
 </resources>

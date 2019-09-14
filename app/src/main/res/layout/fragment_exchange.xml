@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ExchangeFragment">
 
@@ -11,11 +11,11 @@
         android:id="@+id/svItems"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:elevation="4dp"
         app:iconifiedByDefault="false"
         app:queryBackground="@android:color/transparent"
-        app:queryHint="@string/search_currency"
-        android:background="@color/colorWhite"
-        android:elevation="4dp"/>
+        app:queryHint="@string/search_currency" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,17 +23,10 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="4dp"
-        android:text="@string/_1_btc_equals"
-        android:textSize="25sp"
+        android:text="@string/title_1_btc"
         android:textColor="@color/colorBlack"
-        android:textStyle="bold"/>
-
-    <ProgressBar
-        android:id="@+id/pBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        style="?android:attr/progressBarStyleHorizontal"/>
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerContainer"
@@ -46,26 +39,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/shimmer_items"/>
-            <include layout="@layout/shimmer_items"/>
-            <include layout="@layout/shimmer_items"/>
-            <include layout="@layout/shimmer_items"/>
-            <include layout="@layout/shimmer_items"/>
-            <include layout="@layout/shimmer_items"/>
-            <include layout="@layout/shimmer_items"/>
+            <include layout="@layout/shimmer_items" />
 
+            <include layout="@layout/shimmer_items" />
+
+            <include layout="@layout/shimmer_items" />
+
+            <include layout="@layout/shimmer_items" />
+
+            <include layout="@layout/shimmer_items" />
+
+            <include layout="@layout/shimmer_items" />
+
+            <include layout="@layout/shimmer_items" />
+
+            <include layout="@layout/shimmer_items" />
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvExchangeItem"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_exchange"
-        android:clickable="true"
-        android:focusable="true"/>
+        android:layout_height="wrap_content">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvExchangeItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            tools:listitem="@layout/item_exchange" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 </LinearLayout>

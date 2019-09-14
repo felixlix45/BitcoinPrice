@@ -10,7 +10,7 @@ import com.felix.bitcoinprices.model.DBItems
 class ItemsRepository(application: Application) {
 
     private var itemsDao: ItemsDao
-    private var allItems :LiveData<List<DBItems>>
+    private var allItems: LiveData<List<DBItems>>
 
     init {
         val database = ItemDatabase.getInstance(application)
@@ -19,29 +19,31 @@ class ItemsRepository(application: Application) {
 
     }
 
-    fun insert(item:DBItems){
+    fun insert(item: DBItems) {
         InsertItemAsyncTask(itemsDao).execute(item)
 
     }
 
-    fun deleteAll(){
+    fun deleteAll() {
         DeleteAllItemAsyncTask(itemsDao).execute()
     }
 
-    fun getAll() : LiveData<List<DBItems>>{
+    fun getAll(): LiveData<List<DBItems>> {
         return allItems
     }
 
 
-    companion object{
-        class InsertItemAsyncTask(private val itemsDao: ItemsDao) : AsyncTask<DBItems, Void, Void>(){
+    companion object {
+        class InsertItemAsyncTask(private val itemsDao: ItemsDao) :
+            AsyncTask<DBItems, Void, Void>() {
             override fun doInBackground(vararg p0: DBItems): Void? {
                 itemsDao.insert(p0[0])
                 return null
             }
         }
 
-        class DeleteAllItemAsyncTask(private val itemsDao: ItemsDao): AsyncTask<DBItems, Void, Void>(){
+        class DeleteAllItemAsyncTask(private val itemsDao: ItemsDao) :
+            AsyncTask<DBItems, Void, Void>() {
             override fun doInBackground(vararg p0: DBItems): Void? {
                 itemsDao.deleteAll()
                 return null
