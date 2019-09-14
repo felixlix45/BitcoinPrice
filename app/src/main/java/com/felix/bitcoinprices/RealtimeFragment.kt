@@ -1,5 +1,6 @@
 package com.felix.bitcoinprices
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.facebook.shimmer.ShimmerFrameLayout
 import okhttp3.*
 import org.json.JSONObject
 import java.text.DecimalFormat
@@ -20,14 +20,12 @@ class RealtimeFragment : Fragment() {
 
     private lateinit var webSocket: WebSocket
     private lateinit var txtPriceRealtime: TextView
-    private lateinit var shimmerRealtimePrivce: ShimmerFrameLayout
 
     private lateinit var etUSD: EditText
     private lateinit var txtUSDtoBTC: TextView
 
     private lateinit var newPrice: String
     private lateinit var price: String
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +35,7 @@ class RealtimeFragment : Fragment() {
 
         txtPriceRealtime = v.findViewById(R.id.tvPriceRealtime)
         txtPriceRealtime.text = resources.getString(R.string._1_btc_equals, "         ")
-        shimmerRealtimePrivce = v.findViewById(R.id.shimmerRealtimePrice)
+
         etUSD = v.findViewById(R.id.etValueUSD)
         txtUSDtoBTC = v.findViewById(R.id.tvUSDtoBTC)
         txtUSDtoBTC.text = resources.getString(R.string.usd_to_btc, "0")
@@ -74,7 +72,22 @@ class RealtimeFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
+        Log.d(TAG, "onStop()")
         disconnectWebSocket()
+        val sharedPreferences = activity?.getSharedPreferences("BTCValue", MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        editor?.putString("USDtoBTC", txtPriceRealtime.text.toString())
+        editor?.apply()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        Log.d(TAG, "onActivityCreated()")
+        val sharedPreferences = activity?.getSharedPreferences("BTCValue", MODE_PRIVATE)
+        val data = sharedPreferences?.getString("USDtoBTC", txtPriceRealtime.text.toString())
+        Log.d(tag, data.toString())
+        txtPriceRealtime.text = data
+
     }
 
     private fun connectWebSocket() {
@@ -119,7 +132,7 @@ class RealtimeFragment : Fragment() {
                             val dec = DecimalFormat("#,###.00")
                             newPrice = dec.format(price.toDouble())
                             Log.d(TAG, newPrice)
-                            shimmerRealtimePrivce.visibility = View.GONE
+
                             txtPriceRealtime.text =
                                 resources.getString(R.string._1_btc_equals, newPrice)
 

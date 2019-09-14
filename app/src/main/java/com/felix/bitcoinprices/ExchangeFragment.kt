@@ -1,11 +1,11 @@
 package com.felix.bitcoinprices
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -68,21 +68,29 @@ class ExchangeFragment : Fragment() {
 
         shimmerContainer = v.findViewById(R.id.shimmerContainer)
         swipeContainer.isRefreshing = true
+
         itemsViewModel = ViewModelProviders.of(requireActivity()).get(ItemsViewModel::class.java)
         itemsViewModel.getAllItems()
             .observe(requireActivity(), Observer<List<DBItems>> { listItems ->
                 if (listItems.isNotEmpty()) {
                     dbItemsAdapter.setData(listItems)
                     dbItemsAdapter.notifyDataSetChanged()
-                    shimmerContainer.stopShimmer()
-                    shimmerContainer.visibility = View.GONE
-                    swipeContainer.isRefreshing = false
-                } else {
-                    Toast.makeText(requireActivity(), "DATA NULL", Toast.LENGTH_SHORT).show()
+
+                    //Simulate network loading
+                    Handler().postDelayed({
+                        shimmerContainer.stopShimmer()
+                        shimmerContainer.visibility = View.GONE
+                        swipeContainer.isRefreshing = false
+                    }, 1000)
                 }
             })
 
         return v
+
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
     }
 

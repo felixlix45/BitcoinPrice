@@ -8,19 +8,6 @@
     android:orientation="vertical"
     tools:context=".RealtimeFragment">
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmerRealtimePrice"
-        android:layout_width="100dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/colorDarkGray"
-        app:layout_constraintBottom_toBottomOf="@+id/tvPriceRealtime"
-        app:layout_constraintEnd_toEndOf="@+id/tvPriceRealtime"
-        app:layout_constraintStart_toStartOf="@+id/tvPriceRealtime"
-        app:layout_constraintTop_toTopOf="@+id/tvPriceRealtime"
-        app:shimmer_duration="1000" />
-
     <TextView
         android:id="@+id/tvPriceRealtime"
         android:layout_width="wrap_content"

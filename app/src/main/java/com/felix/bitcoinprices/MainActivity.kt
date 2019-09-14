@@ -15,10 +15,11 @@ class MainActivity : AppCompatActivity() {
 
     private var doubleBackToExitPressedOnce = false
     private lateinit var itemsViewModel: ItemsViewModel
+    lateinit var selectedFragment: Fragment
 
     private val bottomNavListener =
         BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
-            lateinit var selectedFragment: Fragment
+
 
             when (menuItem.itemId) {
                 R.id.menu_realtime -> {
@@ -46,15 +47,14 @@ class MainActivity : AppCompatActivity() {
 
         AndroidNetworking.initialize(applicationContext)
 
-//        getData()
         itemsViewModel = ItemsViewModel(application)
         itemsViewModel.getDataBlockchain()
+
         val bottomNav: BottomNavigationView = findViewById(R.id.bottomNavBar)
         bottomNav.setOnNavigationItemSelectedListener(bottomNavListener)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
 
         val fragment: Fragment = RealtimeFragment()
         supportFragmentManager.commit {
