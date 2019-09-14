@@ -1,6 +1,5 @@
 package com.felix.bitcoinprices
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -67,20 +66,21 @@ class ExchangeFragment : Fragment() {
         svItems.setOnQueryTextListener(svListener)
 
         shimmerContainer = v.findViewById(R.id.shimmerContainer)
-        swipeContainer.isRefreshing = true
 
+        swipeContainer.isRefreshing = true
         itemsViewModel = ViewModelProviders.of(requireActivity()).get(ItemsViewModel::class.java)
         itemsViewModel.getAllItems()
             .observe(requireActivity(), Observer<List<DBItems>> { listItems ->
                 if (listItems.isNotEmpty()) {
                     dbItemsAdapter.setData(listItems)
                     dbItemsAdapter.notifyDataSetChanged()
-
+                    shimmerContainer.stopShimmer()
+                    shimmerContainer.visibility = View.GONE
                     //Simulate network loading
                     Handler().postDelayed({
-                        shimmerContainer.stopShimmer()
-                        shimmerContainer.visibility = View.GONE
+
                         swipeContainer.isRefreshing = false
+
                     }, 1000)
                 }
             })
@@ -89,10 +89,6 @@ class ExchangeFragment : Fragment() {
 
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-    }
 
     private fun buildRecyclerView() {
         rvItems.layoutManager = LinearLayoutManager(requireActivity())
