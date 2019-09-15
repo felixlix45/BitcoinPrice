@@ -77,6 +77,7 @@ class RealtimeFragment : Fragment() {
         val sharedPreferences = activity?.getSharedPreferences("BTCValue", MODE_PRIVATE)
         val editor = sharedPreferences?.edit()
         editor?.putString("USDtoBTC", txtPriceRealtime.text.toString())
+        editor?.putString("savedPrice", price)
         editor?.apply()
     }
 
@@ -85,8 +86,10 @@ class RealtimeFragment : Fragment() {
         Log.d(TAG, "onActivityCreated()")
         val sharedPreferences = activity?.getSharedPreferences("BTCValue", MODE_PRIVATE)
         val data = sharedPreferences?.getString("USDtoBTC", txtPriceRealtime.text.toString())
+        val priceData = sharedPreferences?.getString("savedPrice", "")
         Log.d(tag, data.toString())
         txtPriceRealtime.text = data
+        price = priceData!!
 
     }
 
