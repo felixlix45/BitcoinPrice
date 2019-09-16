@@ -1,7 +1,6 @@
 package com.felix.bitcoinprices.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,8 +29,6 @@ class DBItemsAdapter(private val context: Context) :
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(p0: CharSequence?): FilterResults {
-                Log.i("Adapter", copyList.size.toString())
-                Log.i("Adapter", listItems.size.toString())
                 listItems = if (p0 == null || p0.isEmpty()) {
                     copyList
                 } else {

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private var doubleBackToExitPressedOnce = false
     private lateinit var itemsViewModel: ItemsViewModel
-    lateinit var selectedFragment: Fragment
+    private lateinit var selectedFragment: Fragment
 
     private val bottomNavListener =
         BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
